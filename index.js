@@ -2,6 +2,7 @@ import express from 'express'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import userSignUp from './routes/userSignUp.js'
+import userSignIn from './routes/userSignIn.js'
 
 dotenv.config()
 
@@ -11,6 +12,8 @@ const app = express()
 app.use(express.json())
 
 app.use('/signup', userSignUp);
+app.use('/signin', userSignIn);
+
 
 // Mongoose for connecting to mongoDB Database
 const MONGODB_URI = process.env.MONGODB_URI
