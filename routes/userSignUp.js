@@ -1,6 +1,7 @@
 import express from "express";
 import bcrypt from 'bcrypt'
 import { SignUp } from "../models/signUp.js";
+import { validateUser } from "../middleware/validationUser.js";
 
 const router = express.Router()
 
@@ -19,7 +20,7 @@ router.get('/', async(req, res) => {
 });
 
 // Sign-up Route
-router.post('/', async(req, res) => {
+router.post('/',validateUser, async(req, res) => {
     try {
         const {firstName, lastName, email, location, userName, password, repassword} = req.body
 
