@@ -25,7 +25,12 @@ app.use('/v1/api/reset', userReset);
 // Mongoose for connecting to mongoDB Database
 const MONGODB_URI = process.env.MONGODB_URI
 mongoose
-    .connect(MONGODB_URI)
+    .connect(MONGODB_URI,{
+        serverSelectionTimeoutMS: 10000,
+        socketTimeoutMS: 45000,
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    })
     .then( () => {
         console.log("MongoDB connected")
     })
