@@ -60,6 +60,40 @@ router.post("/", validateUser, async (req, res) => {
     });
     await newUser.save();
 
+    // // Generate OTP
+    // const otp = genrateOTP();
+
+    // // Save OTP to the database
+    // const otpEntry = new OTP({ email, otp });
+    // await otpEntry.save();
+
+    // // Send OTP via email
+    // sendOTPEmail(email, otp);
+
+    res
+      .status(201)
+      .send({
+        message:
+          "User Created Successfully. Verification OTP sent to your email.",
+      });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: "Internal Server Error" });
+  }
+});
+
+router.post("/send-otp", async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    // Check if user exists with the provided email
+    const user = await SignUp.findOne({ email });
+    if (!user) {
+      return res
+        .status(404)
+        .json({ message: "User not found with the provided email" });
+    }
+
     // Generate OTP
     const otp = genrateOTP();
 
@@ -71,13 +105,10 @@ router.post("/", validateUser, async (req, res) => {
     sendOTPEmail(email, otp);
 
     res
-      .status(201)
-      .send({
-        message:
-          "User Created Successfully. Verification OTP sent to your email.",
-      });
+      .status(200)
+      .send({ message: "OTP sent to your email verification" });
   } catch (error) {
-    console.log(error);
+    console.error(error.stack);
     res.status(500).send({ message: "Internal Server Error" });
   }
 });

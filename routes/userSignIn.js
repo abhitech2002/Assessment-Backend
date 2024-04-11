@@ -17,14 +17,14 @@ router.post("/", async (req, res) => {
     }
 
     // Checking if user email is verified
-    if (!user.verified) {
-      return res
-        .status(401)
-        .json({
-          message:
-            "Email is not verified. Please verify your email before logging in.",
-        });
-    }
+    // if (!user.verified) {
+    //   return res
+    //     .status(401)
+    //     .json({
+    //       message:
+    //         "Email is not verified. Please verify your email before logging in.",
+    //     });
+    // }
 
     // Checking if user password is correct or not
     const passwordMatch = await bcrypt.compare(password, user.password);
