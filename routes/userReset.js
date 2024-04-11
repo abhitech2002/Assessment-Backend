@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 import { SignUp } from "../models/signUp.js";
 import genrateOTP from "../utils/utils.js";
 import sendOTPEmail from "../utils/sendEmail.js";
-import { OTP } from "../models/otpModal.js";
+import { OTP } from "../models/otpModel.js";
 
 const router = express.Router();
 

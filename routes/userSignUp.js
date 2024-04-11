@@ -4,7 +4,7 @@ import { SignUp } from "../models/signUp.js";
 import { validateUser } from "../middleware/validationUser.js";
 import genrateOTP from "../utils/utils.js";
 import sendOTPEmail from "../utils/sendEmail.js";
-import { OTP } from "../models/otpModal.js";
+import { OTP } from "../models/otpModel.js";
 
 const router = express.Router();
 
