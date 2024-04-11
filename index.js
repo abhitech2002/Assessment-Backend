@@ -3,6 +3,7 @@ import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import userSignUp from './routes/userSignUp.js'
 import userSignIn from './routes/userSignIn.js'
+import cors from 'cors'
 
 dotenv.config()
 
@@ -10,6 +11,8 @@ const app = express()
 
 // Middleware
 app.use(express.json())
+
+app.use(cors())
 
 app.use('/signup', userSignUp);
 app.use('/signin', userSignIn);
