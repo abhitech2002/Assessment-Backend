@@ -28,11 +28,14 @@ mongoose
     .connect(MONGODB_URI,{
         serverSelectionTimeoutMS: 10000,
         socketTimeoutMS: 45000,
-        useNewUrlParser: true,
-        useUnifiedTopology: true
     })
     .then( () => {
         console.log("MongoDB connected")
+        const PORT = process.env.PORT || 3000
+        app.listen(PORT, () => {
+            console.log(`Server running on http://localhost:${PORT}/`)
+        })
+
     })
     .catch((error) => console.log(error))
 
@@ -44,6 +47,6 @@ app.get("/", (req, res) => {
 
 const PORT = process.env.PORT || 3000
 
-app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}/`)
-})
+// app.listen(PORT, () => {
+//     console.log(`Server running on http://localhost:${PORT}/`)
+// })
